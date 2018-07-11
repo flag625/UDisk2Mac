@@ -62,3 +62,9 @@ if __name__ == "__main__":
     target_path = '/Users/cloudin/Documents/test3'
     print("复制文件夹：")
     copyFiles(Udisk_path, target_path)
+    s_list = os.listdir(Udisk_path)
+    t_list = os.listdir(target_path)
+    if s_list == t_list:
+        print("成功，"+"地址："+target_path)
+    else:
+        print("失败")
