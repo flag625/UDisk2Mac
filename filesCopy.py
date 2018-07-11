@@ -13,12 +13,13 @@ Udisk_path  = ''     #u盘地址，U盘插入Mac后的访问地址,绝对路径
 target_path = ''     #目标地址，要复制到的地址,暂定为不存在的地址，绝对路径
 
 
-#复制文件，主程序
+#文件夹复制，主程序
 def copyFiles(s_path, t_path):
     if os.path.exists(s_path):
         if not os.path.exists(t_path):
+            # 目标地址不存在
             try:
-                #目标地址不存在
+                #复制，创建新的文件目录
                 shutil.copytree(s_path, t_path)
             except Exception as e:
                 raise e
@@ -34,17 +35,26 @@ def copyFiles(s_path, t_path):
 #目标地址存在
 def copyfile(s_path, t_path):
     if os.path.isfile(s_path):
-        shutil.copy(s_path, t_path)
+        #t_path存在时，拷贝覆盖。
+        shutil.copyfile(s_path, t_path)
 
     if os.path.isdir(s_path):
         s_pathlist = os.listdir(s_path)
+        #下一层目录
         for inner in s_pathlist:
-            s_inpath = os.path.join(s_path, inner)
-            t_inpath = os.path.join(t_path, inner)
-            try:
-                copyFiles(s_inpath, t_inpath)
-            except Exception as e:
-                raise e
+            s_inpath = os.path.join(s_path, inner)  #下级目录
+            t_inpath = os.path.join(t_path, inner)  #下级目录
+            if os.path.isdir(s_inpath):
+                try:
+                    copyFiles(s_inpath, t_inpath)
+                except Exception as e:
+                    raise e
+            elif os.path.isfile(s_inpath):
+                try:
+                    shutil.copy(s_inpath, t_inpath)
+                except Exception as e:
+                    raise e
+
 
 #test
 if __name__ == "__main__":
