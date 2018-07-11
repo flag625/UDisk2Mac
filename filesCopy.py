@@ -64,7 +64,7 @@ if __name__ == "__main__":
     copyFiles(Udisk_path, target_path)
     s_list = os.listdir(Udisk_path)
     t_list = os.listdir(target_path)
-    if s_list == t_list:
+    if s_list in t_list:
         print("成功，"+"地址："+target_path)
     else:
         print("失败")

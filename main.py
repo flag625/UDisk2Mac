@@ -17,8 +17,6 @@ def setup():
 
 def main():
 
-    copy.target_path = setup()
-
     before_number = ginfo.updata()  # 执行前移动设备驱动数
     ginfo.print_mobile_device(before_number)
 
@@ -33,9 +31,12 @@ def main():
             for i in range(0,now_number):
                 try:
                     copy.Udisk_path = s_pathlist[i]
+                    copy.target_path = setup()
                     copy.copyFiles()
                 except Exception as e:
                     raise e
+                finally:
+                    print("\n"+now_number+1+"Drive Copy-Operation End!")
         elif (now_number < before_number):
             print("检测到移动磁盘被拔出...")
             ginfo.print_mobile_device(now_number)
