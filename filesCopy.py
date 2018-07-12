@@ -74,7 +74,7 @@ def copyfile(s_path, t_path):
             elif os.path.isfile(s_inpath):
                 #下级路径为文件
                 copyfile(s_inpath,t_inpath)
-                
+
                 """
                 if not os.path.exists(t_inpath):
                     try:
