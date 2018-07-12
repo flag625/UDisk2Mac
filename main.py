@@ -7,10 +7,11 @@ import logging.config
 import os
 import shutil
 
-from UDisk2Mac import getSystemInfo as ginfo
-from UDisk2Mac import filesCopy as copy
 import sys
 sys.path.append('/Users/cloudin/PycharmProjects/UDisk2Mac')
+
+from UDisk2Mac import getSystemInfo as ginfo
+from UDisk2Mac import filesCopy as copy
 
 #自定义保存路径，最多输入4次。
 def setup(try_num = 3):
