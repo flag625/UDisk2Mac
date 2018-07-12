@@ -20,7 +20,7 @@ def main():
     before_number = ginfo.updata()  # 执行前移动设备驱动数
     ginfo.print_mobile_device(before_number)
 
-    # 进程进入循环 Loop Seconds = 100s
+    # 进程进入循环 Loop Seconds = 1s
     while True:
         now_number = ginfo.updata()
         s_pathlist = ginfo.mobile_letter
@@ -31,7 +31,8 @@ def main():
             for i in range(0,now_number):
                 try:
                     copy.Udisk_path = s_pathlist[i]
-                    copy.target_path = setup()
+                    mkfiles = os.path.basename(copy.Udisk_path) + '_copy'
+                    copy.target_path = os.path.join(setup(),mkfiles)
                     copy.copyFiles()
                 except Exception as e:
                     raise e
@@ -41,7 +42,7 @@ def main():
             print("检测到移动磁盘被拔出...")
             ginfo.print_mobile_device(now_number)
             before_number = now_number
-        time.sleep(100)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
