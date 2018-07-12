@@ -45,10 +45,11 @@ def main():
                     copy.Udisk_path = s_pathlist[i]
                     #自定义保存路径
                     savefiles = os.path.basename(copy.Udisk_path) + '_copy'
-                    if not setup():
+                    savedir   = setup()
+                    if not savedir:
                         print("\n无效路径!!!")
                         break
-                    copy.target_path = os.path.join(setup(),savefiles)
+                    copy.target_path = os.path.join(savedir,savefiles)
                     copy.copyFiles(copy.Udisk_path, copy.target_path)
                 except Exception as e:
                     raise e
