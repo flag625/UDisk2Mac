@@ -33,11 +33,11 @@ def main():
                     copy.Udisk_path = s_pathlist[i]
                     mkfiles = os.path.basename(copy.Udisk_path) + '_copy'
                     copy.target_path = os.path.join(setup(),mkfiles)
-                    copy.copyFiles()
+                    copy.copyFiles(copy.Udisk_path, copy.target_path)
                 except Exception as e:
                     raise e
                 finally:
-                    print("\n"+now_number+1+"Drive Copy-Operation End!")
+                    print("\n"+str(i+1)+"Drive Copy-Operation End!")
         elif (now_number < before_number):
             print("检测到移动磁盘被拔出...")
             ginfo.print_mobile_device(now_number)
