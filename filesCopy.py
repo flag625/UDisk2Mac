@@ -40,24 +40,42 @@ def copyFiles(s_path, t_path):
 
 #目标地址存在
 def copyfile(s_path, t_path):
+    #路径为文件
     if os.path.isfile(s_path):
-        #t_path存在时，拷贝覆盖。
-        print("\n文件 " + os.path.basename(t_path) + " 存在，更新覆盖")
-        shutil.copyfile(s_path, t_path)
+        if os.path.exists(t_path):
+            #t_path文件存在，拷贝覆盖。
+            try:
+                print("\n文件 " + os.path.basename(s_path) + " 存在，更新覆盖")
+                shutil.copyfile(s_path, t_path)
+            except Exception as e:
+                raise e
+        else:
+            #t_path文件不存在，直接复制创建。
+            try:
+                print("\n创建新文件 " + os.path.basename(s_path) + " ,复制")
+                shutil.copy(s_path, t_path)
+            except Exception as e:
+                raise e
 
+    #路径为文件夹
     if os.path.isdir(s_path):
         s_pathlist = os.listdir(s_path)
-        #下一层目录
+        #进入下一层目录
         for inner in s_pathlist:
-            s_inpath = os.path.join(s_path, inner)  #下级目录
-            t_inpath = os.path.join(t_path, inner)  #下级目录
+            s_inpath = os.path.join(s_path, inner)  #下级路径
+            t_inpath = os.path.join(t_path, inner)  #下级路径
             if os.path.isdir(s_inpath):
+                #下级路径为文件夹
                 try:
-                    print("\n//有 "+inner+" 文件夹，执行复制 :")
+                    print("\n//U 盘有 "+inner+" 文件夹，执行复制 :")
                     copyFiles(s_inpath, t_inpath)
                 except Exception as e:
                     raise e
             elif os.path.isfile(s_inpath):
+                #下级路径为文件
+                copyfile(s_inpath,t_inpath)
+                
+                """
                 if not os.path.exists(t_inpath):
                     try:
                         print("\n创建新文件 "+inner+" ,复制")
@@ -70,6 +88,7 @@ def copyfile(s_path, t_path):
                         shutil.copyfile(s_inpath, t_inpath)
                     except Exception as e:
                         raise e
+                """
 
 
 #test
