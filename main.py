@@ -1,4 +1,4 @@
-#!urs/bin/env python
+#!/usr/bin/env python
 # _-*- coding: utf-8 -*-
 
 import psutil
@@ -9,6 +9,8 @@ import shutil
 
 from UDisk2Mac import getSystemInfo as ginfo
 from UDisk2Mac import filesCopy as copy
+import sys
+sys.path.append('/Users/cloudin/PycharmProjects/UDisk2Mac')
 
 #自定义保存路径，最多输入4次。
 def setup(try_num = 3):
@@ -54,7 +56,7 @@ def main():
                 except Exception as e:
                     raise e
                 finally:
-                    print("\n"+str(i+1)+"Drive Copy-Operation End!")
+                    print("\n"+str(i+1)+" Drive Copy-Operation End!")
         elif (now_number < before_number):
             print("检测到移动磁盘被拔出...")
             ginfo.print_mobile_device(now_number)
