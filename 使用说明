@@ -1,6 +1,10 @@
 脚本：UDisk2Mac
 运行环境：MacOS，python 3
 
+环境配置：
+   1、安装 Python 3 ，配置环境。
+   2、在终端执行 pip3 install -库名，安装第三方库：psutil、shutil
+
 功能：
     当 u盘 插入 Mac 后，获取 u盘 的绝对路径，
     把 u盘 的内容复制到 Mac 指定目录。
