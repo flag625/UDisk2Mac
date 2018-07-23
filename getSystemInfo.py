@@ -87,11 +87,21 @@ def print_mobile_device(n):
         mobile_device, mobile_letter, mobile_number
 
     print("="*50+"\n读取到"+str(n)+"个移动驱动器")
-    if(mobile_number):
+    if mobile_number:
         for i, letter in enumerate(mobile_letter):
-            print("\n"+letter+"：{"+mobile_device[i].opts+"}")
+            print("\n第 "+str(i+1)+" 个"+letter+"：{"+mobile_device[i].opts+"}")
     else:
         print("没有移动驱动器！！！")
+
+def get_path(order):
+    global mobile_letter, mobile_number
+    if order > mobile_number:
+        print("盘符序号超出移动磁盘数量！")
+        return
+    if not mobile_letter:
+        print("没有移动磁盘！")
+        return
+    return mobile_letter[order-1]
 
 #test
 if __name__ == "__main__":
@@ -106,6 +116,8 @@ if __name__ == "__main__":
         if(now_number > before_number):
             print("检测到移动磁盘插入...")
             print_mobile_device(now_number)
+            print("请选择磁盘序号：")
+            print("选择了 "+get_path(int(input())))
             before_number = now_number
         elif(now_number < before_number):
             print("检测到移动磁盘被拔出...")
