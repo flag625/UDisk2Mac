@@ -24,7 +24,7 @@ incremental==17.5.0
 iso8601==0.1.12
 jdcal==1.4
 kiwisolver==1.0.1
-lxml==4.2.3
+lxml==4.9.1
 macholib==1.9
 Markdown==2.6.11
 mysql-connector==2.1.4
